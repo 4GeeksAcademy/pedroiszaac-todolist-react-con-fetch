@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import "../../styles/index.css"
 
 const API_URL_BASE = "https://playground.4geeks.com/todo"
 const USERNAME = "pedroiszaac"
@@ -105,12 +106,13 @@ const Home = () => {
 			<div className="row">
 				<div className="col">
 					<h2>Lista de tareas</h2>
-					<input type="text" class="form-control" placeholder="Escribe tu tarea" aria-label="Username" aria-describedby="basic-addon1" onChange={(event) => {
+					<input type="text" class="form-control" placeholder="Escribe tu tarea" aria-label="Username" aria-describedby="basic-addon1" value={inputValue} onChange={(event) => {
 						setInputValue(event.target.value);
 					}}
 						onKeyDown={(event) => {
-							if (event.key == "Enter") {
+							if (event.key === "Enter" && inputValue.trim() !=="") {
 								createTodo();
+								setInputValue("");
 							}
 						}}
 					/>
